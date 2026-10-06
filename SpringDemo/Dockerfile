@@ -1,5 +1,10 @@
-FROM openjdk-17
-RUN 'mvn clean package -DskipTest'
-COPY /target/Demo.jar /usr/app/Demo.jar
+
+FROM eclipse-temurin:17-jre
+
 WORKDIR /usr/app
-ENTRYPOINT [ "java","-jar","Demo.jar"]
+
+COPY target/*.jar app.jar
+
+EXPOSE 8087
+
+ENTRYPOINT ["java", "-jar", "app.jar"]
